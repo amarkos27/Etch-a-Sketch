@@ -21,6 +21,15 @@ body{
     height: 100vh;
 }
 
+.container > div {
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
 .canvas{
     display: grid;
     grid-template-columns: repeat(16, 1fr);
