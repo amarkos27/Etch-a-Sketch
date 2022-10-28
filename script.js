@@ -1,6 +1,5 @@
 function etch(){
-    let grid = document.querySelector('.container');
-    let temp = document.createElement('div');
+    let grid = document.querySelector('.canvas');
     let array = createArray();
     array = fillArray(array);
     addListeners(array);
@@ -36,13 +35,32 @@ function fillGrid(grid, array){
 function addListeners(array){
     for(column of array){
         for(row of column){
-            row.addEventListener('mouseover', draw);
+            row.addEventListener('mousedown', e => {
+                draw(e, array);
+            });
+        }
+    }
+    let body = document.querySelector('body');
+    body.addEventListener('mouseup', () => stopDrawing(array));
+}
+
+function draw(e, array){
+    e.target.style.background = 'black';
+    if(e.type === 'mousedown'){
+        for(column of array){
+            for(row of column){
+                row.addEventListener('mouseover', draw);
+            }
         }
     }
 }
 
-function draw(e){
-    e.target.style.background = 'black';
+function stopDrawing(array){
+    for(column of array){
+        for(row of column){
+            row.removeEventListener('mouseover', draw);
+        }
+    }
 }
 
 etch();
