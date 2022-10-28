@@ -1,7 +1,9 @@
 function etch(){
-    const grid = document.querySelector('.container');
+    let grid = document.querySelector('.container');
+    let temp = document.createElement('div');
     let array = createArray();
     array = fillArray(array);
+    fillGrid(grid, array);
     console.log(array);
 
 }
@@ -21,6 +23,14 @@ function fillArray(array){
         }
     }
     return array;
+}
+
+function fillGrid(grid, array){
+    for(let column = 0; column < array.length; column++){
+        for(let row = 0; row < array[column].length; row++){
+            grid.appendChild(array[column][row]);
+        }
+    }
 }
 
 etch();
