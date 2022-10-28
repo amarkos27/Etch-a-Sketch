@@ -3,8 +3,8 @@ function etch(){
     let temp = document.createElement('div');
     let array = createArray();
     array = fillArray(array);
+    addListeners(array);
     fillGrid(grid, array);
-    console.log(array);
 
 }
 
@@ -31,6 +31,18 @@ function fillGrid(grid, array){
             grid.appendChild(array[column][row]);
         }
     }
+}
+
+function addListeners(array){
+    for(column of array){
+        for(row of column){
+            row.addEventListener('mouseover', draw);
+        }
+    }
+}
+
+function draw(e){
+    e.target.style.background = 'black';
 }
 
 etch();
