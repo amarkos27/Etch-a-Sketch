@@ -1,10 +1,10 @@
 function etch(){
-    let grid = document.querySelector('.canvas');
+    const grid = document.querySelector('.canvas');
     let array = createArray();
     array = fillArray(array);
     addListeners(array);
     fillGrid(grid, array);
-
+    buttons();
 }
 
 function createArray(){
@@ -33,22 +33,21 @@ function fillGrid(grid, array){
 }
 
 function addListeners(array){
-    for(column of array){
-        for(row of column){
+    for(let column of array){
+        for(let row of column){
             row.addEventListener('mousedown', e => {
                 draw(e, array);
             });
         }
     }
-    let body = document.querySelector('body');
-    body.addEventListener('mouseup', () => stopDrawing(array));
+    window.addEventListener('mouseup', () => stopDrawing(array));
 }
 
 function draw(e, array){
-    e.target.style.background = 'black';
+    e.target.style.background = input();
     if(e.type === 'mousedown'){
-        for(column of array){
-            for(row of column){
+        for(let column of array){
+            for(let row of column){
                 row.addEventListener('mouseover', draw);
             }
         }
@@ -56,10 +55,42 @@ function draw(e, array){
 }
 
 function stopDrawing(array){
-    for(column of array){
-        for(row of column){
+    for(let column of array){
+        for(let row of column){
             row.removeEventListener('mouseover', draw);
         }
+    }
+}
+
+function input(){
+    let input = document.querySelector('input');
+    let label = document.querySelector('label');
+    let color = input.value;
+
+    input.addEventListener('input', () => {
+        label.style.backgroundColor = input.value;
+    });
+    input.addEventListener('change', () => {
+        color = input.value;
+    });
+    return color;
+}
+
+function buttons(){
+    let buttons = document.querySelectorAll('button');
+    let label = document.querySelector('label');
+
+    buttons.forEach(button => button.addEventListener('click', handler));
+}
+
+function handler(e){
+    switch(e.target.textContent){
+        case 'Rainbow':
+            console.log('b');
+            break;
+        case 'Clear':
+            console.log('c');
+            break;
     }
 }
 
