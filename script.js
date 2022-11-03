@@ -5,7 +5,7 @@ function etch(){
     inputListener();
     addListeners(array);
     fillGrid(grid, array);
-    buttons();
+    buttons(array);
 }
 
 function createArray(){
@@ -78,17 +78,20 @@ function getInput(){
     return input.value;
 }
 
-function buttons(){
+function buttons(array){
     let buttons = document.querySelectorAll('button');
-    buttons.forEach(button => button.addEventListener('click', handler));
+    buttons.forEach(button => button.addEventListener('click', e => {
+        handler(e, array);
+    }));
 }
 
-function handler(e){
+function handler(e, array){
     switch(e.target.textContent){
         case 'Rainbow':
             e.target.classList.toggle('clicked');
             break;
         case 'Clear':
+            clearCanvas(array);
             break;
     }
 }
@@ -97,4 +100,13 @@ function random_hex(){
     let result = (Math.random() * 0xfffff * 1000000).toString(16);
     return `#${result.slice(0, 6)}`;
 }
+
+function clearCanvas(array){
+    for(let column of array){
+        for(let row of column){
+            row.style.backgroundColor = '#fffdf6';
+        }
+    }
+}
+
 etch();

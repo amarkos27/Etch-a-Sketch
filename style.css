@@ -49,8 +49,8 @@ h1{
 .canvas{
     display: grid;
     grid-template-columns: repeat(16, 1fr);
-    height: 33rem;
-    width: 33rem;
+    min-height: 33rem;
+    min-width: 33rem;
     background-color: #fffdf6;
     border: 3px solid #494949;
     border-radius: .5rem;
