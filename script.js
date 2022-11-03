@@ -2,6 +2,7 @@ function etch(){
     const grid = document.querySelector('.canvas');
     let array = createArray();
     array = fillArray(array);
+    inputListener();
     addListeners(array);
     fillGrid(grid, array);
     buttons();
@@ -44,7 +45,7 @@ function addListeners(array){
 }
 
 function draw(e, array){
-    e.target.style.background = input();
+    e.target.style.background = getInput();
     if(e.type === 'mousedown'){
         for(let column of array){
             for(let row of column){
@@ -62,18 +63,19 @@ function stopDrawing(array){
     }
 }
 
-function input(){
-    let input = document.querySelector('input');
-    let label = document.querySelector('label');
-    let color = input.value;
+function inputListener(){
+    const input = document.querySelector('input');
+    input.addEventListener('input', changeLabel);
+}
 
-    input.addEventListener('input', () => {
-        label.style.backgroundColor = input.value;
-    });
-    input.addEventListener('change', () => {
-        color = input.value;
-    });
-    return color;
+function changeLabel(e){
+    const label = document.querySelector('label');
+    label.style.backgroundColor = e.target.value;
+}
+
+function getInput(){
+    const input = document.querySelector('input');
+    return input.value;
 }
 
 function buttons(){
