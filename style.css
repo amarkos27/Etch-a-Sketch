@@ -97,7 +97,8 @@ button{
     font-family: 'Indie Flower', Roboto;
 }
 
-button:hover{
+button:hover,
+button.clicked{
     cursor: pointer;
     background-color: #fffdf6;
     color: #494949;

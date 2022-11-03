@@ -45,7 +45,7 @@ function addListeners(array){
 }
 
 function draw(e, array){
-    e.target.style.background = getInput();
+    e.target.style.background = document.querySelector('.rainbow').classList.contains('clicked') ? random_hex() : getInput();
     if(e.type === 'mousedown'){
         for(let column of array){
             for(let row of column){
@@ -80,20 +80,21 @@ function getInput(){
 
 function buttons(){
     let buttons = document.querySelectorAll('button');
-    let label = document.querySelector('label');
-
     buttons.forEach(button => button.addEventListener('click', handler));
 }
 
 function handler(e){
     switch(e.target.textContent){
         case 'Rainbow':
-            console.log('b');
+            e.target.classList.toggle('clicked');
             break;
         case 'Clear':
-            console.log('c');
             break;
     }
 }
 
+function random_hex(){
+    let result = (Math.random() * 0xfffff * 1000000).toString(16);
+    return `#${result.slice(0, 6)}`;
+}
 etch();
