@@ -104,12 +104,6 @@ function random_hex(){
 function clearCanvas(array){
     for(let col = 0; col < array.length; col++){
         for(let row = 0; row < array[col].length; row++){
-            //Make sure corners stay rounded
-            if((col === 0 && row === 0) || (col === 0 && row === array[0].length - 1)
-            || (col === array.length - 1 && row === 0) || (col === array.length - 1 &&
-                row === array[col].length - 1)){
-                array[row][col].style.borderRadius = '.5rem';
-            }
             array[col][row].style.backgroundColor = '#fffdf6';
         }
     }

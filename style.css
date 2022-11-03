@@ -44,18 +44,20 @@ h1{
     display: flex;
     justify-content: center;
     gap: 100px;
+    flex: 1;
 }
 
 .canvas{
     display: grid;
     grid-template-columns: repeat(16, 1fr);
-    min-height: 33rem;
-    min-width: 33rem;
+    max-height: 33rem;
+    max-width: 33rem;
     background-color: #fffdf6;
     border: 3px solid #494949;
     border-radius: .5rem;
-    margin-right: 227.83px;
-    flex: none;
+    padding: .2em;
+    margin-right: 267.211px;
+    flex: 1;
 }
 
 .buttons{
@@ -66,6 +68,9 @@ h1{
     border-radius: .5rem;
     justify-content: space-around;
     font-family: 'Indie Flower', Roboto;
+    max-height: 31.5rem;
+    max-width: fit-content;
+    flex: 0 2 auto;
 }
 
 label{
