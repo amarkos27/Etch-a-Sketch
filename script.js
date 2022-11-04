@@ -1,16 +1,22 @@
 function etch(){
     const grid = document.querySelector('.canvas');
     const slider = document.querySelector('input[type="range"]');
+    document.querySelector('p').textContent = `${slider.value} X ${slider.value}`;
     const buttons = document.querySelectorAll('button');
     let oldArray = newGrid(+slider.value, grid);
+
 
     inputListener();
     slider.addEventListener('change', e => {
         oldArray = newGrid(+e.target.value, grid, oldArray);
     });
+    slider.addEventListener('input', e => {
+        document.querySelector('p').textContent = `${e.target.value} X ${e.target.value}`;
+    });
     for(let button of buttons){
         button.addEventListener('click', () => handler(button, oldArray));
     }
+
 }
 
 function createArray(value){
@@ -118,13 +124,13 @@ function clearCanvas(array, buttons){
 }
 
 function newGrid(value, grid, oldArray = null){
-    const gridSize = document.querySelector('p');
+    // const gridSize = document.querySelector('p');
     if(grid.children.length > 0){
         destroyGrid(grid, oldArray);
     }
     let array = createArray(value);
     array = fillArray(array);
-    gridSize.textContent = `${array.length} X ${array.length}`;
+    // gridSize.textContent = `${array.length} X ${array.length}`;
     addListeners(array);
     fillGrid(grid, array);
 
