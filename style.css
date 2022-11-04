@@ -23,6 +23,7 @@ h1{
     text-align: center;
 }
 
+/*MAIN*/
 .container{
     display: flex;
     flex-direction: column;
@@ -47,6 +48,7 @@ h1{
     flex: 1;
 }
 
+/*SKETCH AREA*/
 .canvas{
     background-color: #fffdf6;
     border: 3px solid #494949;
@@ -59,6 +61,7 @@ h1{
     flex: none;
 }
 
+/*BUTTON AREA*/
 .options{
     display: flex;
     flex-direction: column;
