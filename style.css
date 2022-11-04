@@ -25,7 +25,6 @@ h1{
 .container{
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 3.5em;
     height: 100vh;
 }
@@ -43,7 +42,7 @@ h1{
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 100px;
+    gap: 7em;
     flex: 1;
 }
 
@@ -53,10 +52,10 @@ h1{
     border-radius: .5rem;
     padding: .2em;
     display: grid;
-    max-height: 33rem;
-    max-width: 33rem;
-    margin-right: 189.411px;
-    flex: 1;
+    height: 33rem;
+    width: 33rem;
+    margin-right: 18em;
+    flex: none;
 }
 
 .buttons{
@@ -69,7 +68,7 @@ h1{
     font-family: 'Indie Flower', Roboto;
     max-height: 31.5rem;
     max-width: fit-content;
-    flex: 0 1 auto;
+    flex: 0 2 auto;
 }
 
 .sliderContainer{
