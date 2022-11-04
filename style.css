@@ -148,6 +148,9 @@ p.area{
     .options{
         max-height: 22em;
     }
+    .buttons{
+        gap: 25px;
+    }
     .interface{
         gap: 3em;
     }
