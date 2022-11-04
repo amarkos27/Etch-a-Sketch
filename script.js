@@ -1,17 +1,22 @@
 function etch(){
     const grid = document.querySelector('.canvas');
-    let array = createArray();
-    array = fillArray(array);
+    const slider = document.querySelector('input[type="range"]');
+    const buttons = document.querySelectorAll('button');
+    let oldArray = newGrid(+slider.value, grid);
+
     inputListener();
-    addListeners(array);
-    fillGrid(grid, array);
-    buttons(array);
+    slider.addEventListener('change', e => {
+        oldArray = newGrid(+e.target.value, grid, oldArray);
+    });
+    for(let button of buttons){
+        button.addEventListener('click', () => handler(button, oldArray));
+    }
 }
 
-function createArray(){
-    let array = new Array(16);
+function createArray(value){
+    let array = new Array(value);
     for(let i = 0; i < array.length; i++){
-        array[i] = new Array(16);
+        array[i] = new Array(value);
     }
     return array;
 }
@@ -26,11 +31,21 @@ function fillArray(array){
 }
 
 function fillGrid(grid, array){
-    for(let column = 0; column < array.length; column++){
-        for(let row = 0; row < array[column].length; row++){
-            grid.appendChild(array[column][row]);
+    grid.style.gridTemplateColumns = `repeat(${array.length}, 1fr)`;
+    for(let column of array){
+        for(let row of column){
+            grid.appendChild(row);
         }
     }
+}
+
+function destroyGrid(grid, array){
+    for(let column of array){
+        for(let row of column){
+            row.parentNode.removeChild(row);
+        }
+    }
+    window.removeEventListener('mouseup', () => stopDrawing(array));
 }
 
 function addListeners(array){
@@ -64,7 +79,7 @@ function stopDrawing(array){
 }
 
 function inputListener(){
-    const input = document.querySelector('input');
+    const input = document.querySelector('.color');
     input.addEventListener('input', changeLabel);
 }
 
@@ -74,21 +89,14 @@ function changeLabel(e){
 }
 
 function getInput(){
-    const input = document.querySelector('input');
+    const input = document.querySelector('.color');
     return input.value;
 }
 
-function buttons(array){
-    let buttons = document.querySelectorAll('button');
-    buttons.forEach(button => button.addEventListener('click', e => {
-        handler(e, array);
-    }));
-}
-
-function handler(e, array){
-    switch(e.target.textContent){
+function handler(button, array){
+    switch(button.textContent){
         case 'Rainbow':
-            e.target.classList.toggle('clicked');
+            button.classList.toggle('clicked');
             break;
         case 'Clear':
             clearCanvas(array);
@@ -101,12 +109,26 @@ function random_hex(){
     return `#${result.slice(0, 6)}`;
 }
 
-function clearCanvas(array){
+function clearCanvas(array, buttons){
     for(let col = 0; col < array.length; col++){
         for(let row = 0; row < array[col].length; row++){
             array[col][row].style.backgroundColor = '#fffdf6';
         }
     }
+}
+
+function newGrid(value, grid, oldArray = null){
+    const gridSize = document.querySelector('p');
+    if(grid.children.length > 0){
+        destroyGrid(grid, oldArray);
+    }
+    let array = createArray(value);
+    array = fillArray(array);
+    gridSize.textContent = `${array.length} X ${array.length}`;
+    addListeners(array);
+    fillGrid(grid, array);
+
+    return array;
 }
 
 etch();

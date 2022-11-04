@@ -48,15 +48,14 @@ h1{
 }
 
 .canvas{
-    display: grid;
-    grid-template-columns: repeat(16, 1fr);
-    max-height: 33rem;
-    max-width: 33rem;
     background-color: #fffdf6;
     border: 3px solid #494949;
     border-radius: .5rem;
     padding: .2em;
-    margin-right: 267.211px;
+    display: grid;
+    /* grid-template-columns: repeat(16, 1fr); */
+    max-height: 33rem;
+    max-width: 33rem;
     flex: 1;
 }
 
@@ -73,6 +72,12 @@ h1{
     flex: 0 2 auto;
 }
 
+.sliderContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 label{
     width: 5em;
     height: 5em;
@@ -87,7 +92,7 @@ label:hover{
     box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
-input{
+input.color{
     visibility: hidden;
 }
 
@@ -107,4 +112,16 @@ button.clicked{
     cursor: pointer;
     background-color: #fffdf6;
     color: #494949;
+}
+
+input[type="range"]{
+    cursor: pointer;
+}
+
+p.area{
+    margin: 5px 0;
+    height: fit-content;
+    width: fit-content;
+    text-align: center;
+    color: #fffdf6;
 }
